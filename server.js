@@ -25,7 +25,7 @@ app.post("/api/notes", function(req,res){
     notesInfo.push(newNote);
     addId();
     let save = JSON.stringify(notesInfo);
-    fs.writeFileSync("db.json",save)
+    fs.writeFileSync("/db.json",save)
 
     res.redirect('back');
 });
@@ -44,14 +44,12 @@ function addId() {
 };
 let reWrite = () => {
     let newDB = JSON.stringify(notesInfo);
-    fs.writeFile('db/db.json', newDB, err => { if (err) throw err });
+    fs.writeFile('/db.json', newDB, err => { if (err) throw err });
 };
 
 app.get("/api/notes", function (req, res) {
-    return res.json(db.json);
+    return res.json(notesInfo);
 });
-
-
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
